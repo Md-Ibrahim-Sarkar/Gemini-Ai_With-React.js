@@ -1,13 +1,18 @@
+import { useContext } from "react";
 import { assets } from "../../assets/assets";
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { Context } from "../../Context/Context";
 
 
 
 
 
 function Main() {
+
+ const {onSent,resentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
+
   return (
-    <div className="w-full">
+    <div className="w-full max-[640px]:px-4">
       <div className="flex justify-between w-full items-center p-4">
         <div className="flex items-center cursor-pointer hover:bg-slate-400 py-2 ps-2 pe-1 rounded-2xl transform transition-all ease-linear duration-200">
           <h2 className="text-3xl font-semibold ">Gemini</h2>
@@ -23,12 +28,14 @@ function Main() {
       </div>
       <div className=" max-w-[900px] mx-auto xl:mt-14 lg:mt-4">
         <div className="">
-          <h1 className="text-6xl">
-            <span className="head-text">Hello, There!</span>
+          <h1 className="text-6xl max-[640px]:text-4xl max-[640px]:text-center">
+            <span className="head-text max-[640px]:">Hello, There!</span>
           </h1>
-          <p className="text-5xl">How Can I help you today?</p>
+          <p className="text-5xl max-[640px]:text-4xl max-[640px]:text-center">
+            How Can I help you today?
+          </p>
         </div>
-        <div className="grid grid-cols-4 mt-4 gap-4 ">
+        <div className="grid grid-cols-4 mt-4 gap-4 max-[640px]:grid-cols-1">
           <div className="bg-[#F0F4F9] p-3 inline-flex flex-col  justify-between rounded-xl hover:bg-slate-400 transform transition-all ease-linear duration-300 cursor-pointer">
             <p className="">
               Suggest beautiful places to see on an upcoming road trip
@@ -64,6 +71,8 @@ function Main() {
           <div className="">
             <div className="flex justify-between items-center gap-5 p-4 bg-[#d7e6f8] rounded-full">
               <input
+                onChange={(e) => setInput(e.target.value)}
+                value={input}
                 className="bg-transparent w-full outline-none "
                 type="text"
                 placeholder="Enter a prompt here..."
@@ -80,6 +89,7 @@ function Main() {
                   alt=""
                 />
                 <img
+                  onClick={()=>onSent()}
                   className="w-6 cursor-pointer"
                   src={assets.send_icon}
                   alt=""

@@ -6,7 +6,7 @@ function Sidebar() { // Corrected name
   const [extended, setExtended] = useState(false);
 
   return (
-    <div className="p-[20px] bg-[#DFE0E1] inline-flex flex-col  justify-between">
+    <div className="p-[20px] bg-[#DFE0E1] inline-flex flex-col max-[640px]:hidden justify-between">
       <div>
         <div
           onClick={() => {
@@ -41,7 +41,7 @@ function Sidebar() { // Corrected name
         </div>
       </div>
       <div className="transform transition-all duration-500">
-        <div className="flex gap-4 hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200">
+        <div className="flex gap-4 hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200 cursor-pointer">
           <img
             className="w-[20px] h-[20px]"
             src={assets.question_icon}
@@ -49,7 +49,7 @@ function Sidebar() { // Corrected name
           />
           {extended && <p>Help</p>}
         </div>
-        <div className="flex gap-4  hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200">
+        <div className="flex gap-4  hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200 cursor-pointer">
           <img
             className="w-[20px] h-[20px]"
             src={assets.history_icon}
