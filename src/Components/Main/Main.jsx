@@ -9,7 +9,7 @@ import { Context } from "../../Context/Context";
 
 function Main() {
 
- const {onSent,resentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
+ const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
 
   return (
     <div className="w-full max-[640px]:px-4">
@@ -27,7 +27,10 @@ function Main() {
         </a>
       </div>
       <div className=" max-w-[900px] mx-auto xl:mt-14 lg:mt-4">
-        <div className="">
+        
+        {!showResult ?
+          <>
+            <div className="">
           <h1 className="text-6xl max-[640px]:text-4xl max-[640px]:text-center">
             <span className="head-text max-[640px]:">Hello, There!</span>
           </h1>
@@ -65,6 +68,37 @@ function Main() {
             <img className="w-[25px] ms-auto" src={assets.code_icon} alt="" />
           </div>
         </div>
+          </> : 
+          <div className="">
+            <div className="py-0 px-[5%] max-h-[70vh] overflow-y-scroll  overflow-hidden">
+                <div className="flex items-center gap-4 mb-5">
+                <img className="w-[40px]" src={assets.gemini_icon} alt="" />
+                <p dangerouslySetInnerHTML={{__html:recentPrompt}}></p>
+              </div>
+              
+                <div className="flex ">
+                     <div className="w-[7%]">
+                    <img className="w-[40px] rounded-full" src={assets.myImage} alt="" />
+                    </div>
+                <div className="w-[91%]">
+                  {loading ?
+                    <div className="w-full flex flex-col gap-3 loader">
+                      <hr className="rounded border-none bg-[#f6f7f8]" />
+                      <hr className="rounded border-none bg-[#f6f7f8]" />
+                      <hr className="rounded border-none bg-[#f6f7f8]" />
+                    </div> :
+                    
+                    <p className="mb-24 text-lg font-light leading-7" dangerouslySetInnerHTML={{__html:resultData}}></p>
+                  
+                  }
+                    </div>
+              </div>
+             
+            </div>
+          </div>
+        }
+        
+        
       </div>
       <div className="w-full flex justify-center mt-4">
         <div className="absolute  bottom-0 w-full max-w-[900px] px-5 ">

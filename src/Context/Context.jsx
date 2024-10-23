@@ -6,8 +6,9 @@ export const Context = createContext()
 
 const ContextProvider = ({children}) => {
  
-
+  // done
   const [input, setInput] = useState("");
+
   const [recentPrompt, setRecentPrompt] = useState('');
   const [prevPrompts, setPrevPrompts] = useState([]);
   const [showResult, setShowResult] = useState(false);
@@ -16,8 +17,16 @@ const ContextProvider = ({children}) => {
 
 
   const onSent = async (prompt) => {
-      await runChat(input)
-    }
+     
+    setResultData('');
+    setLoading(true);
+    setShowResult(true);
+    setRecentPrompt(input)
+    const response = await runChat(input)
+    setResultData(response)
+    setLoading(false);
+    setInput('')
+  }
 
 
   const contextValue = {

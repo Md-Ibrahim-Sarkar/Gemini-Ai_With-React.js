@@ -12,3 +12,23 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+.overflow-hidden::-webkit-scrollbar{
+  display: none;
+}
+.loader hr {
+  background:  linear-gradient(to right, #9ed7ff, #fff,#9ed7ff);
+  background-size: 800px 50px;
+  height: 25px;
+  animation: loader 3s infinite linear;
+}
+
+@keyframes loader {
+  0%{
+    background-position:  -800px 0px;
+  }
+  100%{
+    background-position: 800px 0px;
+  }
+}
