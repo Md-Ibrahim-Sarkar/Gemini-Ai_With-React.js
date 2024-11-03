@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
+import { Context } from "../../Context/Context";
 
 function Sidebar() { // Corrected name
 
   const [extended, setExtended] = useState(false);
+  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context)
+
+
+  const loadPrompt = async (prompt) => {
+    setRecentPrompt(prompt)
+    await onSent(prompt)
+  }
 
   return (
     <div className="p-[20px] bg-[#DFE0E1] inline-flex flex-col max-[640px]:hidden justify-between">
@@ -16,9 +24,9 @@ function Sidebar() { // Corrected name
         >
           <img className="w-[20px]" src={assets.menu_icon} alt="Menu" />
         </div>
-        <div className="flex p-3 items-center mt-9 bg-[#DCFCE7] rounded-full cursor-pointer hover:bg-[#bbefcd] transform transition-all ease-linear duration-200">
+        <div onClick={() => newChat()} className="flex px-3 py-2 items-center mt-9 bg-[#DCFCE7] rounded-full cursor-pointer hover:bg-[#bbefcd] transform transition-all ease-linear duration-200">
           <img
-            className="w-[20px] rounded-full"
+            className="w-[25px] rounded-full"
             src={assets.plus_icon}
             alt="New Chat"
           />
@@ -26,23 +34,29 @@ function Sidebar() { // Corrected name
         </div>
         <div className="mt-5">
           {extended && (
-            <>
+            <div>
               <p>Recent</p>
-              <div className="flex gap-3 mt-3 hover:bg-slate-300 p-3 rounded-full cursor-pointer transform transition-all ease-linear duration-200">
-                <img
-                  className="w-[25px] h-[25px]"
-                  src={assets.message_icon}
-                  alt="Message"
-                />
-                <p>What is React.js?</p>
+              <div className="overflow-y-scroll lg:h-[130px] xl:h-[350px] overflow-hidden">
+                {prevPrompts.map((item, index) => (
+                  <div onClick={() => loadPrompt(item)} className="flex gap-x-3 mt-3 hover:bg-slate-300 py-1 px-2 rounded-full cursor-pointer transform transition-all ease-linear duration-200 " key={index}>
+                    <img
+                      className="w-[25px] h-[25px]"
+                      src={assets.message_icon}
+                      alt="Message"
+                    />
+                    <p>{item.slice(0, 18)} ...</p>
+                  </div>
+                ))}
               </div>
-            </>
+            </div>
+
           )}
         </div>
       </div>
       <div className="transform transition-all duration-500">
         <div className="flex gap-4 hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200 cursor-pointer">
           <img
+            onClick={() => setExtended(true)}
             className="w-[20px] h-[20px]"
             src={assets.question_icon}
             alt="Help"
@@ -51,6 +65,7 @@ function Sidebar() { // Corrected name
         </div>
         <div className="flex gap-4  hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200 cursor-pointer">
           <img
+            onClick={() => setExtended(true)}
             className="w-[20px] h-[20px]"
             src={assets.history_icon}
             alt="Activity History"
@@ -59,6 +74,7 @@ function Sidebar() { // Corrected name
         </div>
         <div className="flex gap-4 hover:bg-slate-300 p-2 rounded-full transform transition-all ease-linear duration-200">
           <img
+            onClick={() => setExtended(true)}
             className="w-[20px] h-[20px]"
             src={assets.setting_icon}
             alt="Settings"
