@@ -46,7 +46,7 @@ const ContextProvider = ({ children }) => {
       if (i === 0 || i % 2 !== 1) {
         newResponse += responseArray[i];
       } else {
-        newResponse += "<b>" + responseArray[i] + "</b>";
+        newResponse += "<b>"+responseArray[i]+"</b>";
       }
     }
 
