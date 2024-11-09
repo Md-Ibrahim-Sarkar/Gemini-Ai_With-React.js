@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { Context } from "../../Context/Context";
 
-function Sidebar() { // Corrected name
+function Sidebar() { 
 
   const [extended, setExtended] = useState(false);
   const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context)
@@ -94,4 +94,4 @@ function Sidebar() { // Corrected name
   );
 }
 
-export default Sidebar; // Corrected name
+export default Sidebar; 
