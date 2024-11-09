@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { assets } from "../../assets/assets";
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { Context } from "../../Context/Context";
-
+import { RiMenuFold2Fill } from "react-icons/ri";
 
 
 
@@ -12,15 +12,18 @@ function Main() {
   const { onSent, recentPrompt, showResult, loading, resultData, setInput, input } = useContext(Context)
 
   return (
-    <div className="w-full max-[640px]:px-4 max-[640px]:relative ">
-      <div className="flex justify-between w-full items-center p-4">
-        <div className="flex items-center cursor-pointer hover:bg-slate-400 py-2 ps-2 pe-1 rounded-2xl transform transition-all ease-linear duration-200">
+    <div className="w-full  max-[640px]:relative ">
+      <div className="flex justify-between w-full items-center p-3">
+        <div className="flex items-center cursor-pointer hover:bg-slate-400 py-2 ps-2 pe-1 rounded-2xl transform transition-all ease-linear duration-200 max-[640px]:hidden">
+        
+
           <h2 className="text-3xl font-semibold ">Gemini</h2>
           <IoMdArrowDropdown className="text-3xl" />
         </div>
+        <RiMenuFold2Fill className='min-[640px]:hidden w-10 h-7' />
         <a target="_blank" href="https://ibrahimsarkar.com/">
           <img
-            className="w-[55px] rounded-full cursor-pointer  transform transition-all ease-linear duration-200 hover:bg-slate-600 "
+            className="w-[40px] rounded-full cursor-pointer  transform transition-all ease-linear duration-200 hover:bg-slate-600 "
             src={assets.myImage}
             alt=""
           />
@@ -30,15 +33,15 @@ function Main() {
 
         {!showResult ?
           <>
-            <div className="">
+            <div className=" max-[640px]:pt-14">
               <h1 className="text-6xl max-[640px]:text-4xl max-[640px]:text-center">
                 <span className="head-text max-[640px]:">Hello, There!</span>
               </h1>
-              <p className="text-5xl max-[640px]:text-4xl max-[640px]:text-center">
+              <p className="text-5xl max-[640px]:text-2xl max-[640px]:text-center">
                 How Can I help you today?
               </p>
             </div>
-            <div className="grid grid-cols-4 mt-4 gap-4 max-[640px]:grid-cols-1">
+            <div className="grid grid-cols-4 mt-4 gap-4 max-[640px]:hidden">
               <div className="bg-[#F0F4F9] p-3 inline-flex flex-col  justify-between rounded-xl hover:bg-slate-400 transform transition-all ease-linear duration-300 cursor-pointer">
                 <p className="">
                   Suggest beautiful places to see on an upcoming road trip
@@ -100,10 +103,10 @@ function Main() {
 
 
       </div>
-      <div className="w-full flex justify-center mt-4 ">
+      <div className="sm:w-full sm:flex sm:justify-center sm:mt-4   max-[640px]:fixed max-[640px]:bottom-24 max-[640px]:left-0 max-[640px]:w-full max-[640px]:flex max-[640px]:justify-center">
         <div className="absolute md:bottom-0 w-full max-w-[900px] px-5  max-[640px]:px-2 ">
           <div className="">
-            <div className="flex justify-between items-center gap-5 p-4 bg-[#d7e6f8] rounded-full">
+            <div className="flex justify-between items-center gap-5 p-4 max-[640px]:p-3 max-[640px]:px-4 bg-[#d7e6f8] rounded-full">
               <input
                 onChange={(e) => setInput(e.target.value)}
                 value={input}
@@ -132,15 +135,14 @@ function Main() {
             </div>
             <div className="flex justify-center ">
               <p className="text-xs my-2 text-center">
-                React + Gemini API by {' '}
+              AI-Powered Chat with React & Gemini API: A Project by {' '}
                 <a
                   target="_blank"
                   className="font-semibold hover:underline"
                   href="https://ibrahimsarkar.com/"
                 >
-                  Ibrahim Sarkar:
+                  Ibrahim Sarkar
                 </a>{' '}
-                Creating an AI Chat Experience
               </p>
             </div>
           </div>
